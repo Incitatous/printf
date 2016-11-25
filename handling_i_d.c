@@ -78,13 +78,24 @@ int _printf(const char *format, ...)
 		{
 			i++;
 			j = 0;
+
+			int v;
+			v = 0;
 			while (j < 5)
 			{
 				if (*print_a[j].s == format[i])
 				{
 					chars += (print_a[j].f(args));
+					v = 1;
 				}
 				j++;
+			}
+			/* prints non-specifiers and percent signs */
+			if (v == 0)
+			{
+				_putchar('%');
+				_putchar(format[i]);
+				chars += 2;
 			}
 		}
 		else
